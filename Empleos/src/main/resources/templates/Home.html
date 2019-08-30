@@ -5,7 +5,11 @@
 <title>Pagina Principal</title>
 </head>
 <body>
-<h2 th:text=${Mensaje}></h2>
-<h1> hoy es:  [[${Fecha}]]</h1>
+	<h1>Bienvenido</h1>
+	<h2>Oferta de trabajo</h2>
+	<h3 th:text="'Titulo: ' + ${Nombre}"></h3>
+	<h3 th:text="'Fecha publicacion: ' + ${Fecha}"></h3>
+	<h3 th:text="'Salario:' + ${Salario}"></h3>
+	<h3 th:text="'Vigente:' + ${vigente}"></h3>
 </body>
 </html>
