@@ -21,25 +21,34 @@
 			<th>Salario</th>
 			<th>Descripcion</th>
 			<th>Destacado</th>
+		     <th></th>
+<th>Borrar</th>
 
 		</tr>
 		<tr th:each="vacante: ${vacantes}">
-			<td >
-			<img th:src="@{/images/{foto}(foto=${vacante.image})}" width="136px" height="136px">
-			</td>
+			<td><img th:src="@{/images/{foto}(foto=${vacante.image})}"
+				width="136px" height="136px"></td>
 			<td th:text="${vacante.id}"></td>
 			<td th:text="${vacante.nombre}"></td>
 			<td th:text="${vacante.fecha}"></td>
 			<td th:text="${vacante.salario}"></td>
 			<td th:text="${vacante.descripcion}"></td>
-			<td><span th:if="${vacante.destacado==1}"
+			<td>
+			<span th:if="${vacante.destacado==1}"
 				class="badge badge-success">Si</span> <span
 				th:unless="${vacante.destacado==1}" class="badge badge-danger">No</span>
+			</td>
+			<td>
+				<a th:href="@{/vacantes/view/{id} (id=${vacante.id}) }" class="btn btn-success">Detalle</a>
+			</td>
+			<td>
+			<a th:href="@{/vacantes/delete(id=${vacante.id}) }" class="btn btn-danger">Borrar</a>
 			</td>
 		</tr>
 	</table>
 	<script
-		src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
 		crossorigin="anonymous"></script>
 
 </body>
