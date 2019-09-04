@@ -20,6 +20,8 @@ public class CategoriasController {
 	@GetMapping("/create")
 	public String Crear(Model model) {
 
+		System.out.println("");
+		
 		return "categorias/formCategoria";
 
 	}

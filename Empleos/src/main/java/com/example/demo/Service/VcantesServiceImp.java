@@ -26,6 +26,7 @@ public class VcantesServiceImp implements IVacanteService{
 			vacante.setSalario(152422.0);
 			vacante.setDestacado(1);
 			vacante.setImage("hulk.png");
+			vacante.setEstatus("creada");
 			Lista.add(vacante);
 			
 			vacante =new Vacantes();
@@ -36,6 +37,7 @@ public class VcantesServiceImp implements IVacanteService{
 			vacante.setSalario(300.0);
 			vacante.setDestacado(0);
 			vacante.setImage("spiderman.png");
+			vacante.setEstatus("Eliminada");
 			Lista.add(vacante);
 			
 			vacante =new Vacantes();
@@ -46,6 +48,7 @@ public class VcantesServiceImp implements IVacanteService{
 			vacante.setSalario(50.0);
 			vacante.setDestacado(1);
 			vacante.setImage("thor.png");
+			vacante.setEstatus("creada");
 			Lista.add(vacante);
 			
 			vacante =new Vacantes();
@@ -55,6 +58,7 @@ public class VcantesServiceImp implements IVacanteService{
 			vacante.setFecha(sdf.parse("02-07-2019"));
 			vacante.setSalario(50.0);
 			vacante.setDestacado(1);
+			vacante.setEstatus("Aprobada");
 			Lista.add(vacante);
 			
 			}catch (ParseException e) {
@@ -67,6 +71,24 @@ public class VcantesServiceImp implements IVacanteService{
 	public List<Vacantes> BuscarTodas() {
 		// TODO Auto-generated method stub
 		return Lista;
+	}
+
+
+	@Override
+	public Vacantes BuscarPorId(Integer IdVacante) {
+		for(Vacantes vacante:Lista) {
+			if(vacante.getId()==IdVacante) {
+				return vacante;
+			}
+		}
+		return null;
+	}
+
+
+	@Override
+	public void Guardar(Vacantes Vacantes) {
+		Lista.add(Vacantes);
+		
 	}
 
 }

@@ -25,14 +25,11 @@ public class HomeController {
 	@GetMapping("/")
 	public String MuestraHome(Model model) {
 
-		String Nombre = "Auxiliar de Contabilidad";
-		Date Fechapub = new Date();
-		double Salario = 1000;
-		boolean vigente = true;
-		model.addAttribute("Nombre", Nombre);
-		model.addAttribute("Fecha", Fechapub);
-		model.addAttribute("Salario", Salario);
-		model.addAttribute("vigente", vigente);
+		List<Vacantes> listavacantes=ivacanteservice.BuscarTodas();
+		
+		model.addAttribute("vacantes",listavacantes);
+		
+
 		return "Home";
 	}
 

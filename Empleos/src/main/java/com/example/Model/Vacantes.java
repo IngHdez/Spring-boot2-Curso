@@ -11,6 +11,8 @@ private Double salario;
 private Date fecha;
 private Integer destacado;
 private String image="No_picture_available.png";
+private String detalles;
+private String estatus;
 
 
 public Integer getId() {
@@ -59,12 +61,34 @@ public String getImage() {
 public void setImage(String image) {
 	this.image = image;
 }
+
+public String getDetalles() {
+	return detalles;
+}
+public void setDetalles(String detalles) {
+	this.detalles = detalles;
+}
+public String getStstus() {
+	return ststus;
+}
+public void setStstus(String ststus) {
+	this.ststus = ststus;
+}
+private String ststus;
+
+
+
+public String getEstatus() {
+	return estatus;
+}
+public void setEstatus(String estatus) {
+	this.estatus = estatus;
+}
 @Override
 public String toString() {
 	return "Vacantes [id=" + id + ", nombre=" + nombre + ", descripcion=" + descripcion + ", salario=" + salario
-			+ ", fecha=" + fecha + ", destacado=" + destacado + "]";
+			+ ", fecha=" + fecha + ", destacado=" + destacado + ", image=" + image + ", detalles=" + detalles
+			+ ", estatus=" + estatus + ", ststus=" + ststus + "]";
 }
-
-
 
 }
