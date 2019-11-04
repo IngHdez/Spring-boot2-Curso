@@ -1,4 +1,4 @@
-package com.example.demo.Controlller;
+package com.example.demo.Controller;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.omg.CORBA.PUBLIC_MEMBER;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,17 +19,31 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.Model.Vacantes;
+import com.example.demo.Service.ICategoriasService;
 import com.example.demo.Service.IVacanteService;
+
+import Util.Utileria;
 
 @Controller
 @RequestMapping("/vacantes")
 public class VacantesController {
+	
+	
+	@Value("${empleosapp.ruta.images}")
+	private String ruta;
+	
 	@Autowired
 	IVacanteService VacanteService;
 
+	@Autowired
+	ICategoriasService icategoriasservice;
+	
+
+	
 	@GetMapping("/view/{id}")
 	public String verDetalle(@PathVariable("id") int idvacante, Model model) {
 		model.addAttribute("idvacante", idvacante);
@@ -43,28 +58,14 @@ public class VacantesController {
 	}
 
 	@GetMapping("/create")
-	public String Crea(Vacantes vacantes) {
+	public String Crea(Vacantes vacantes,Model categorias) {
+		categorias.addAttribute("cat",icategoriasservice.buscarTodas());
 
 		return "vacantes/formVacante";
 	}
-/*
+
 	@PostMapping("/save")
-	public String guarda(@RequestParam ("nombre") String nombre,@RequestParam ("descripcion") String descripcion,
-			@RequestParam ("estatus") String estatus,@RequestParam ("fecha") String fecha,
-			@RequestParam ("destacado") int destacado,
-			@RequestParam ("salario") String salario,@RequestParam ("detalles") String detalles) {
-		System.out.println(nombre);
-		System.out.println(descripcion);
-		System.out.println(estatus);
-		System.out.println(fecha);
-		System.out.println(destacado);
-		System.out.println(salario);
-		System.out.println(detalles);
-		return "vacantes/listVacantes";
-	}
-*/
-	@PostMapping("/save")
-	public String guarda(Vacantes vacante,BindingResult bindingResult,RedirectAttributes attributes ) {
+	public String guarda(Vacantes vacante,BindingResult bindingResult,RedirectAttributes attributes,@RequestParam("archivoImagen") MultipartFile multiPart ) {
 		
 		if(bindingResult.hasErrors()) {
 			for(ObjectError error:bindingResult.getAllErrors()) {
@@ -73,7 +74,15 @@ public class VacantesController {
 			}
 			return "vacantes/formVacante";
 		}
-	
+		if (!multiPart.isEmpty()) {
+			//String ruta = "/empleos/img-vacantes/"; // Linux/MAC
+		
+			String nombreImagen = Utileria.guardarArchivo(multiPart, ruta);
+			if (nombreImagen != null){ // La imagen si se subio
+			// Procesamos la variable nombreImagen
+			vacante.setImage(nombreImagen);
+			}
+			}
 		VacanteService.Guardar(vacante);
 		attributes.addFlashAttribute("msg","Registro Guardado");
 		return "redirect:/vacantes/index";

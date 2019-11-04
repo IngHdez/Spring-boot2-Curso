@@ -1,4 +1,4 @@
-package com.example.demo.Controlller;
+package com.example.demo.Controller;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -13,7 +13,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import com.example.Model.Categoria;
 import com.example.Model.Vacantes;
+import com.example.demo.Service.ICategoriasService;
 import com.example.demo.Service.IVacanteService;
 
 @Controller
@@ -21,6 +23,8 @@ public class HomeController {
 
 	@Autowired
 	IVacanteService ivacanteservice;
+	@Autowired
+	ICategoriasService icategoriaservice;
 	
 	@GetMapping("/")
 	public String MuestraHome(Model model) {
@@ -29,7 +33,10 @@ public class HomeController {
 		
 		model.addAttribute("vacantes",listavacantes);
 		
-
+		List<Categoria> listcategorias=icategoriaservice.buscarTodas();
+		
+		model.addAttribute("vacantes",listavacantes);
+		model.addAttribute("categorias",listcategorias);
 		return "Home";
 	}
 
@@ -67,7 +74,15 @@ public class HomeController {
 		return "Tabla";
 		
 	}
-	
+	@GetMapping("/categorias")
+	public String Mostrar(Model model) {
+		List<Categoria> listcategoria=icategoriaservice.buscarTodas();
+		
+		model.addAttribute("categoria",listcategoria);
+		
+		return "TablaCategorias";
+		
+	}
 
 
 

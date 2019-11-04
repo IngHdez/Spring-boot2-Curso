@@ -88,7 +88,7 @@ public class VcantesServiceImp implements IVacanteService{
 	@Override
 	public void Guardar(Vacantes Vacantes) {
 		Lista.add(Vacantes);
-		
+		System.out.println(Lista);
 	}
 
 }
