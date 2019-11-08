@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.omg.CORBA.PUBLIC_MEMBER;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
@@ -22,9 +23,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.example.Model.Vacantes;
 import com.example.demo.Service.ICategoriasService;
 import com.example.demo.Service.IVacanteService;
+import com.example.demo.model.Vacantes;
 
 import Util.Utileria;
 
@@ -40,6 +41,7 @@ public class VacantesController {
 	IVacanteService VacanteService;
 
 	@Autowired
+	@Qualifier("categoriaServiceJpa")
 	ICategoriasService icategoriasservice;
 	
 

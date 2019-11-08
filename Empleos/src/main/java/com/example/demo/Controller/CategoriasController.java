@@ -3,6 +3,7 @@ package com.example.demo.Controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -14,16 +15,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.example.Model.Categoria;
-import com.example.Model.Vacantes;
 import com.example.demo.Service.ICategoriasService;
 import com.example.demo.Service.IVacanteService;
+import com.example.demo.model.Categoria;
+import com.example.demo.model.Vacantes;
 
 @Controller
 @RequestMapping("/categorias")
 public class CategoriasController {
 
 	@Autowired
+	@Qualifier("categoriaServiceJpa")
 	ICategoriasService CategoriasService ;
 	
 	@GetMapping("/view/{id}")

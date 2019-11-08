@@ -5,8 +5,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.example.Model.Categoria;
-import com.example.Model.Vacantes;
+import com.example.demo.model.Categoria;
+import com.example.demo.model.Vacantes;
 @Service
 public class CategoriasServiceImpl implements ICategoriasService{
 	private List<Categoria> ListaCategoria =new LinkedList<Categoria>();
@@ -17,13 +17,13 @@ public class CategoriasServiceImpl implements ICategoriasService{
 		Categoria Categoria=new Categoria();
 		Categoria.setId(1);
 		Categoria.setNombre("ahuevo");
-		 Categoria.setDescripcion(12);
+		 Categoria.setDescripcion("12");
 		ListaCategoria.add(Categoria);
 		
 		 Categoria=new Categoria();
 		Categoria.setId(1);
 		Categoria.setNombre("ahuevo2");
-		 Categoria.setDescripcion(12);
+		 Categoria.setDescripcion("12");
 		ListaCategoria.add(Categoria);
 		
 	}

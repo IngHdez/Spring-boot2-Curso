@@ -7,7 +7,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.example.Model.Vacantes;
+import com.example.demo.model.Vacantes;
 @Service
 public class VcantesServiceImp implements IVacanteService{
 

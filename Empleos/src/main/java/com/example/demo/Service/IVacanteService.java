@@ -2,7 +2,7 @@ package com.example.demo.Service;
 
 import java.util.List;
 
-import com.example.Model.Vacantes;
+import com.example.demo.model.Vacantes;
 
 public interface IVacanteService {
 	List<Vacantes> BuscarTodas();

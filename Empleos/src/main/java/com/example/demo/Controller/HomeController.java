@@ -9,14 +9,15 @@ import java.util.List;
 
 import org.omg.CORBA.PUBLIC_MEMBER;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import com.example.Model.Categoria;
-import com.example.Model.Vacantes;
 import com.example.demo.Service.ICategoriasService;
 import com.example.demo.Service.IVacanteService;
+import com.example.demo.model.Categoria;
+import com.example.demo.model.Vacantes;
 
 @Controller
 public class HomeController {
@@ -24,6 +25,7 @@ public class HomeController {
 	@Autowired
 	IVacanteService ivacanteservice;
 	@Autowired
+	@Qualifier("categoriaServiceJpa")
 	ICategoriasService icategoriaservice;
 	
 	@GetMapping("/")
