@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 
 import com.example.demo.Service.ICategoriasService;
 import com.example.demo.Service.IVacanteService;
@@ -27,18 +28,11 @@ public class HomeController {
 	@Autowired
 	@Qualifier("categoriaServiceJpa")
 	ICategoriasService icategoriaservice;
-	
+
 	@GetMapping("/")
 	public String MuestraHome(Model model) {
 
-		List<Vacantes> listavacantes=ivacanteservice.BuscarTodas();
-		
-		model.addAttribute("vacantes",listavacantes);
-		
-		List<Categoria> listcategorias=icategoriaservice.buscarTodas();
-		
-		model.addAttribute("vacantes",listavacantes);
-		model.addAttribute("categorias",listcategorias);
+
 		return "Home";
 	}
 
@@ -54,6 +48,7 @@ public class HomeController {
 		return "detalles";
 
 	}
+
 	@GetMapping("/listado")
 	public String MuestraListado(Model model) {
 		List<String> lista = new ArrayList<String>();
@@ -67,25 +62,32 @@ public class HomeController {
 		return "listado";
 
 	}
+
 	@GetMapping("/Vacantes")
 	public String MostrarTable(Model model) {
-		List<Vacantes> listavacantes=ivacanteservice.BuscarTodas();
-		
-		model.addAttribute("vacantes",listavacantes);
-		
+		List<Vacantes> listavacantes = ivacanteservice.BuscarTodas();
+
+		model.addAttribute("vacantes", listavacantes);
+
 		return "Tabla";
-		
+
 	}
+
 	@GetMapping("/categorias")
 	public String Mostrar(Model model) {
-		List<Categoria> listcategoria=icategoriaservice.buscarTodas();
-		
-		model.addAttribute("categoria",listcategoria);
-		
+		List<Categoria> listcategoria = icategoriaservice.buscarTodas();
+
+		model.addAttribute("categoria", listcategoria);
+
 		return "TablaCategorias";
-		
+
 	}
 
+	@ModelAttribute
+	public void setGenericos(Model model) {
+		model.addAttribute("vacantes", ivacanteservice.Buscavacantesdestacadas());
 
+		model.addAttribute("categorias", icategoriaservice.buscarTodas());
+	}
 
 }

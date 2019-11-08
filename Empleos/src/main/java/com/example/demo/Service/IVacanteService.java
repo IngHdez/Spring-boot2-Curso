@@ -8,4 +8,5 @@ public interface IVacanteService {
 	List<Vacantes> BuscarTodas();
 	Vacantes BuscarPorId(Integer IdVacante);
 	void Guardar(Vacantes Vacantes);
+	List<Vacantes> Buscavacantesdestacadas();
 }
