@@ -1,0 +1,46 @@
+
+ThemesExtension {
+color-definition: '#sg-background', '#sg-background-hovered', '#sg-background-opened',
+'#sg-error-bg', '#sg-error-text';
+}
+ColorDefinition#sg-background {
+color: #353c41;
+}
+ColorDefinition#sg-background-hovered {
+color: #2e3438;
+}
+ColorDefinition#sg-background-opened {
+color: #272c30;
+}
+ColorDefinition#sg-error-bg {
+color: #893e3d;
+}
+ColorDefinition#sg-error-text {
+color: #e0e3e6;
+}
+
+#SetupGuideView,
+#SetupGuideView *
+{
+background-color: '#sg-background';
+}
+#SetupGuideView > Composite.steps {
+background-color: '#sg-background-hovered';
+}
+
+#SetupGuideView StepPanel.hovered,
+#SetupGuideView StepPanel.hovered *
+{
+background-color: '#sg-background-hovered';
+}
+#SetupGuideView StepPanel.opened,
+#SetupGuideView StepPanel.opened *
+{
+background-color: '#sg-background-opened';
+}
+
+#SetupGuideView StepPanel .error *
+{
+background-color: '#sg-error-bg';
+color: '#sg-error-text';
+}
