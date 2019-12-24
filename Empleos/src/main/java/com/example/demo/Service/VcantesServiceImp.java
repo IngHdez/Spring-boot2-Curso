@@ -91,4 +91,18 @@ public class VcantesServiceImp implements IVacanteService{
 		System.out.println(Lista);
 	}
 
+
+	@Override
+	public List<Vacantes> Buscavacantesdestacadas() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public void eliminar(Integer elimina) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

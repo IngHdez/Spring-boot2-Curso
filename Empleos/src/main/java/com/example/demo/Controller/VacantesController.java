@@ -89,12 +89,12 @@ public class VacantesController {
 		attributes.addFlashAttribute("msg","Registro Guardado");
 		return "redirect:/vacantes/index";
 	}
-	@GetMapping("/delete")
-	public String Eliminar(@RequestParam("id") int id, Model model) {
+	@GetMapping("/delete/{id}")
+	public String Eliminar(@PathVariable("id") int id, Model model) {
 		System.out.println("Elimina Vacante con ID: " + id);
-
-		model.addAttribute("id", id);
-		return "Mensaje";
+		VacanteService.eliminar(id);
+		
+		return "redirect:/vacantes/index";
 
 	}
 	
